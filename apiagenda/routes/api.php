@@ -30,7 +30,8 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('logout','App\Http\Controllers\UserController@logout');
     ////
     Route::post('create','App\Http\Controllers\CrudController@createContact');
-    Route::post('erase','App\Http\Controllers\CrudController@eraseContact');
+    Route::post('eraseContact','App\Http\Controllers\CrudController@eraseContact');
+    Route::post('eraseUser', 'App\Http\Controllers\UserController@eraseUser');
     Route::get('updateContact/{id}','App\Http\Controllers\CrudController@updateContact');
     Route::get('updateUser/{id}','App\Http\Controllers\CrudController@updateUser');
     ////

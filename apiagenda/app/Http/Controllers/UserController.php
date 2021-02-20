@@ -125,4 +125,33 @@ class UserController extends Controller
         return response()->json(["msg" => "Password has been successfully changed"]);
     }
 
+    public function eraseUser(Request $request)
+    {
+        $response = "";
+
+        $data = $request->getContent();
+
+        $data = json_decode($data);
+
+        if($data){
+
+            $erase_id = $data->id;
+
+            if($erase_id){
+
+                $user = User::where('id', $erase_id)->first();
+
+                print($user);
+
+                $user->delete();
+
+                $response = 'el usuario ha sido borrado';
+            }
+
+
+        }
+
+        return response($response);
+    }
+
 }
