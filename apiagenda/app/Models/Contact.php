@@ -14,4 +14,6 @@ class Contact extends Model
         'contact_phone',
         'contact_email',
     ];
+
+    protected $hidden = ['created_at','updated_at']; 
 }

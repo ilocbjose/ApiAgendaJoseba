@@ -157,6 +157,26 @@ class CrudController extends Controller
     	return response($response);
     }
     
-    
+    public function showContact($id)
+    {
+    	$contacts = Contact::where('user_id',$id)->get();
+
+    	$contactList = [];
+
+		foreach ($contacts as $contact) {
+			
+			$contactList[] = [
+
+			"contact_name" => $contact->contact_name,
+			"contact_phone" => $contact->contact_phone,
+			"contact_email" => $contact->contact_email
+
+			];
+
+		}
+
+		return response()->json($contactList);
+
+    }
 }
 
