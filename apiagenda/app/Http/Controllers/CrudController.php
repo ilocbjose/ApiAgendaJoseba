@@ -157,5 +157,51 @@ class CrudController extends Controller
     	return response($response);
     }
     
+     public function updateUser(Request $request, $id)
+    {
+    	$user = User::find($id);
+
+    	if($user){
+
+    		$data = $request->getContent();
+
+    		$data = json_decode($data);
+
+    		if($data){
+
+    			if(isset($data->name))
+					$user->name = $data->name;
+
+				if(isset($data->email))
+					$user->email = $data->email;
+
+				if(isset($data->cpassword))
+					$user->password = $data->password;
+
+				try{
+
+					$user->save();
+
+					$response = 'El usuario ha sido actualizado';
+
+				}catch(\Exception $e){
+
+					$response = $e->getMessage();
+
+				}
+
+    		}else{
+
+    			$response = 'Los datos introducidos no son correctos';
+
+    		}
+
+    	}else{
+
+    		$response = 'El usuario no existe';
+    	}
+
+    	return response($response);
+    }
 }
 
