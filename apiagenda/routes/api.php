@@ -24,6 +24,8 @@ Route::post('password/email', 'App\Http\Controllers\UserController@forgot');
 Route::post('password/reset', 'App\Http\Controllers\UserController@reset');
 
 Route::group(['middleware' => ['jwt.verify']], function() {
+
+	Route::get('index','App\Http\Controllers\SearchController@index');
     
 	Route::get('user','App\Http\Controllers\UserController@getAuthenticatedUser');
     Route::get('logout','App\Http\Controllers\UserController@logout');
