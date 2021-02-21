@@ -27,27 +27,26 @@ class SearchController extends Controller
 			if($data->contact_name){
 				$contact_name = $data->contact_name;
 				$contact = Contact::where('contact_name',$contact_name)->get()->toArray();
-					return response()->json($contact,200);
-
+					return $contact;
 
 			}elseif($data->contact_phone){
 				$contact_phone = $data->contact_phone;
 				$contact = Contact::where('contact_phone',$contact_phone)->get()->toArray();
-					return response()->json($contact,200);
+					return $contact;
 
 			}elseif($data->contact_email){
 				$contact_email = $data->contact_email;
 				$contact = Contact::where('contact_email',$contact_email)->get()->toArray();
-					return response()->json($contact,200);
+					return $contact;
 			}else{
 
-				return response('No existe ningún usuario.');
+				return 'No existe ningún usuario.';
 
 			}
 
 		} else {
 
-			return response('Datos introducidos nulos.');
+			return 'Datos introducidos nulos.';
 
 		}
 
