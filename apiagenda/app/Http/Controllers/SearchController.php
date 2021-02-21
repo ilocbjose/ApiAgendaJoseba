@@ -16,15 +16,11 @@ class SearchController extends Controller
 
 	public function search(Request $request){
 
-		$response = '';
-
 		$data = $request->getContent();
 
 		$data = json_decode($data);
 
-		$contact = Contact::find($data->contact_name)->first()->toArray();
-		$contact = Contact::find($data->contact_phone)->first()->toArray();
-		$contact = Contact::find($data->contact_email)->first()->toArray();
+		$contact = Contact::find($data)->first()->toArray();
 
 		if($data){
 
