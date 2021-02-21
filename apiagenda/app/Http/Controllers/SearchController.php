@@ -26,8 +26,9 @@ class SearchController extends Controller
 
 			if($data->contact_name){
 				$contact_name = $data->contact_name;
-				$contact = Contact::where('contact_name',$contact_name);
-					return response()->json($contact,200);
+				$contact = Contact::where('contact_name',$contact_name->get()->toArray();
+					$this->response = $contact;
+					return $this->response;
 
 			}elseif($data->contact_phone){
 				$contact_phone = $data->contact_phone;
