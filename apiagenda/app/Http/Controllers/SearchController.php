@@ -23,22 +23,24 @@ class SearchController extends Controller
 		$data = json_decode($data);
 
 		$contact_name_search = $data->contact_name;
+		$contact_phone_search = $data->contact_phone;
+		$contact_email_search = $data->contact_email;
 
 		if($data){
 
 			if($contact_name_search){
 				$contact_name = $data->contact_name;
-				$contact = Contact::where('contact_name',$contact_name)->get()->toArray();
+				$contact = Contact::where('contact_name',$contact_name)->first()->toArray();
 					return $contact;
 
-			}elseif($data->contact_phone){
+			}elseif($contact_phone_search){
 				$contact_phone = $data->contact_phone;
-				$contact = Contact::where('contact_phone',$contact_phone)->get()->toArray();
+				$contact = Contact::where('contact_phone',$contact_phone)->frist()->toArray();
 					return $contact;
 
-			}elseif($data->contact_email){
+			}elseif($contact_email_search){
 				$contact_email = $data->contact_email;
-				$contact = Contact::where('contact_email',$contact_email)->get()->toArray();
+				$contact = Contact::where('contact_email',$contact_email)->first()->toArray();
 					return $contact;
 			}else{
 
