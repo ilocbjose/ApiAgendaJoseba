@@ -18,11 +18,11 @@ class SearchController extends Controller
 
 		$data = $request->getContent();
 
-		$data[] = json_decode($data);
-
-		$contact = Contact::find($data)->first()->toArray();
+		$data = json_decode($data);
 
 		if($data){
+
+			$contact = Contact::find($data->request)->first()->toArray();
 
 			if($contact){
 
