@@ -22,26 +22,16 @@ class SearchController extends Controller
 
 		$data = json_decode($data);
 
-		$contact_name_search = $data->contact_name;
-		$contact_phone_search = $data->contact_phone;
-		$contact_email_search = $data->contact_email;
+		$contact = Contact::find($data->contact_name)->first()->toArray();
+		$contact = Contact::find($data->contact_phone)->first()->toArray();
+		$contact = Contact::find($data->contact_email)->first()->toArray();
 
 		if($data){
 
-			if($contact_name_search){
-				$contact_name = $data->contact_name;
-				$contact = Contact::where('contact_name',$contact_name)->first()->toArray();
-					return $contact;
+			if($contact){
 
-			}elseif($contact_phone_search){
-				$contact_phone = $data->contact_phone;
-				$contact = Contact::where('contact_phone',$contact_phone)->frist()->toArray();
-					return $contact;
+					return reponse($contact);
 
-			}elseif($contact_email_search){
-				$contact_email = $data->contact_email;
-				$contact = Contact::where('contact_email',$contact_email)->first()->toArray();
-					return $contact;
 			}else{
 
 				return 'No existe ningún usuario.';
