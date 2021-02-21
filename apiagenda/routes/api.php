@@ -25,17 +25,20 @@ Route::post('password/email', 'App\Http\Controllers\UserController@forgot');
 Route::post('password/reset', 'App\Http\Controllers\UserController@reset');
 
 Route::group(['middleware' => ['jwt.verify']], function() {
-
-	Route::get('index','App\Http\Controllers\SearchController@index');
     
 	Route::get('user','App\Http\Controllers\UserController@getAuthenticatedUser');
     Route::get('logout','App\Http\Controllers\UserController@logout');
+
     Route::post('create','App\Http\Controllers\CrudController@createContact');
+
     Route::post('eraseContact','App\Http\Controllers\CrudController@eraseContact');
     Route::post('eraseUser', 'App\Http\Controllers\UserController@eraseUser');
+
     Route::get('showContact', 'App\Http\Controllers\CrudController@showContact');
+
     Route::get('updateContact/{id}','App\Http\Controllers\CrudController@updateContact');
     Route::get('updateUser/{id}','App\Http\Controllers\CrudController@updateUser');
+    
     Route::get('search','App\Http\Controllers\SearchController@search');
 
 });
