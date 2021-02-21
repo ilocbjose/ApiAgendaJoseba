@@ -26,18 +26,18 @@ class SearchController extends Controller
 
 			if($data->contact_name){
 				$contact_name = $data->contact_name;
-				$contact = Contact::where('contact_name',$contact_name->get()->toArray();
-					$this->response = $contact;
-					return $this->response;
+				$contact = Contact::where('contact_name',$contact_name)->get()->toArray();
+					return response()->json($contact,200);
+
 
 			}elseif($data->contact_phone){
 				$contact_phone = $data->contact_phone;
-				$contact = Contact::where('contact_name',$contact_name);
+				$contact = Contact::where('contact_phone',$contact_phone)->get()->toArray();
 					return response()->json($contact,200);
 
 			}elseif($data->contact_email){
 				$contact_email = $data->contact_email;
-				$contact = Contact::where('contact_name',$contact_phone);
+				$contact = Contact::where('contact_email',$contact_email)->get()->toArray();
 					return response()->json($contact,200);
 			}else{
 
@@ -52,5 +52,4 @@ class SearchController extends Controller
 		}
 
 	}
-
 }
