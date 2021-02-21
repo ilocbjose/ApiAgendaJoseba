@@ -18,9 +18,9 @@ class SearchController extends Controller
 
 		$data = $request->getContent();
 
-		$data = json_decode($data)->toArray();
+		$data[] = json_decode($data);
 
-		$contact = Contact::find($data[0])->first()->toArray();
+		$contact = Contact::find($data)->first()->toArray();
 
 		if($data){
 
