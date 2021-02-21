@@ -22,9 +22,11 @@ class SearchController extends Controller
 
 		$data = json_decode($data);
 
+		$contact_name_search = $data->contact_name;
+
 		if($data){
 
-			if($data->contact_name){
+			if($contact_name_search){
 				$contact_name = $data->contact_name;
 				$contact = Contact::where('contact_name',$contact_name)->get()->toArray();
 					return $contact;
