@@ -22,7 +22,7 @@ class SearchController extends Controller
 
 		if($data){
 
-			$contact = Contact::find($data->request)->get()->toArray();
+			$contact = Contact::find($request->request)->get()->toArray();
 
 			if($contact){
 
