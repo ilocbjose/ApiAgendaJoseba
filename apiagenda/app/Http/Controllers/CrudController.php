@@ -181,7 +181,7 @@ class CrudController extends Controller
 
     public function showWebContact(Request $request){
 
-    	$contacts = DB::table('contacts')->all()->toArray();
+    	$contacts = DB::table('contacts')->get()->toArray();
 
 		return view('contacts')->with('contacts',$contacts);
     }
