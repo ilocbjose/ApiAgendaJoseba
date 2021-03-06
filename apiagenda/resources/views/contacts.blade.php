@@ -6,7 +6,7 @@
             <div class="card-panel purple darken-1">
                 <h3>Contactos</h3>
             </div>
-                <table">
+                <table class = "striped">
                     <thead>
                         <tr>
                             <th>Name</th>
