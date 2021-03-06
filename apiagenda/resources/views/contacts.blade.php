@@ -6,7 +6,7 @@
             <div class="card-panel purple darken-1">
                 <h3>Contactos</h3>
             </div>
-                <table class="responsive-table">
+                <table">
                     <thead>
                         <tr>
                             <th>Name</th>
