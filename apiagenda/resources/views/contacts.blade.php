@@ -11,7 +11,7 @@
                         <tr>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Description</th>
+                            <th>Phone</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -19,7 +19,7 @@
                             <tr>
                                 <td>{!! $contact->contact_name !!}</td>
                                 <td>{!! $contact->contact_email !!}</td>
-                                <td>{!! $conctat->contact_phone !!}</td>
+                                <td>{!! $contact->contact_phone !!}</td>
                             </tr>
                         @endforeach
                     </tbody>
