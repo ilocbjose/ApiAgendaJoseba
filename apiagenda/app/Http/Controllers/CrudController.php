@@ -169,7 +169,6 @@ class CrudController extends Controller
     public function showContact(Request $request)
     {
 
-
     	$user = JWTAuth::parseToken()->authenticate();
 
     	$userId = $user->id;
