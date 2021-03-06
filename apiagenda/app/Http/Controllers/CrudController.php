@@ -179,13 +179,9 @@ class CrudController extends Controller
 
     }
 
-    public function showWebContact($id){
+    public function showWebContact(Request $request){
 
-    	$id = JWTAuth::parseToken()->authenticate();
-
-    	$userId = $user->id;
-
-    	$contacts = Contact::where('user_id',$userId)->get()->toArray();
+    	$contacts = DB::table('contacts')->all()->toArray();
 
 		return view('contacts')->with('contacts',$contacts);
     }
