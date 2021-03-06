@@ -78,7 +78,10 @@ class CrudController extends Controller
 
 		Log::info('La funcion ha finalizado');
 
-		return response($response);
+		return response()->json([
+                'status'=> 'success',
+                'message'=>'Contact created'
+            ],200);;
     }
 
     public function eraseContact(Request $request)
@@ -107,7 +110,10 @@ class CrudController extends Controller
 
 		}
 
-		return response($response);
+		return response()->json([
+                'status'=> 'success',
+                'message'=>'User erased'
+            ],200);;
     }
 
     public function updateContact(Request $request, $id)
@@ -154,7 +160,10 @@ class CrudController extends Controller
     		$response = 'El contacto no existe';
     	}
 
-    	return response($response);
+    	return response()->json([
+                'status'=> 'success',
+                'message'=>'User updated'
+            ],200);;
     }
     
     public function showContact(Request $request)
