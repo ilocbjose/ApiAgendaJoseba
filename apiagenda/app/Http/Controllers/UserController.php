@@ -41,7 +41,9 @@ class UserController extends Controller
         } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
                 return response()->json(['token_absent'], $e->getStatusCode());
         }
-        return response()->json(compact('user'));
+        $user_send = compact('user');
+
+        return view('user')->with('users',$user_send);
     }
 
 
