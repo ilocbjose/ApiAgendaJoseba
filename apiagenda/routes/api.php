@@ -37,7 +37,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
 
     Route::get('showContact', 'App\Http\Controllers\CrudController@showContact');
 
-    Route::get('updateContact/{id}','App\Http\Controllers\CrudController@updateContact');
+    Route::post('updateContact/{id}','App\Http\Controllers\CrudController@updateContact');
     Route::get('updateUser/{id}','App\Http\Controllers\CrudController@updateUser');
     
     Route::get('search','App\Http\Controllers\SearchController@search');
