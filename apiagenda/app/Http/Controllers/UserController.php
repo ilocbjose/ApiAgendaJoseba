@@ -43,7 +43,7 @@ class UserController extends Controller
         }
         $user_send = compact('user');
 
-        return view('user')->with('users',$user_send);
+        return response()->json($user_send);
     }
 
 
