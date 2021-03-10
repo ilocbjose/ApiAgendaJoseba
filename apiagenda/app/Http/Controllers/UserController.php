@@ -156,4 +156,11 @@ class UserController extends Controller
         return response($response);
     }
 
+    public function showUsers(Request $request)
+    {
+        $users = DB:table('users')->select('name','email')->get()->toArray();
+
+        return response()->json($users);    
+    }
+
 }

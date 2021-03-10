@@ -24,6 +24,7 @@ Route::post('login', 'App\Http\Controllers\UserController@authenticate');
 Route::post('password/email', 'App\Http\Controllers\UserController@forgot');
 Route::post('password/reset', 'App\Http\Controllers\UserController@reset');
 Route::get('showWeb', 'App\Http\Controllers\CrudController@showWebContact');
+Route::get('showUsers','App\Http\Controllers\UserController@showUsers');
 
 Route::group(['middleware' => ['jwt.verify']], function() {
     
