@@ -158,7 +158,7 @@ class UserController extends Controller
 
     public function showUsers(Request $request)
     {
-        $users = DB:table('users')->select('name','email')->get()->toArray();
+        $users = DB::table('users')->select('name','email')->get()->toArray();
 
         return response()->json($users);    
     }
