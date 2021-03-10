@@ -185,5 +185,13 @@ class CrudController extends Controller
 
 		return view('contacts')->with('contacts',$contacts);
     }
+
+    public function showAllContacts(Request $request){
+
+    	$contacts = DB::table('contacts')->get()->toArray();
+
+    	return response()->json($contacts);
+
+    }
 }
 
