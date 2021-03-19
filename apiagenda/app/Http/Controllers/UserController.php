@@ -135,7 +135,7 @@ class UserController extends Controller
         $erase_id = $user->id;
 
         $user_erase = User::where('id', $erase_id)->first();
-        $contact = Contact::where('id_user',$erase_id)->delete();
+        $contact = Contact::where('user_id',$erase_id)->delete();
 
         $user_erase->delete();
 
