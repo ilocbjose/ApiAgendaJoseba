@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
-    //logica funcion busqueda por name, phone e email
+    //logica funcion busqueda por name, phone e email aproximandose a lo que se ha escrito
 
 	public function search(Request $request){
 
@@ -23,8 +23,6 @@ class SearchController extends Controller
         
         $search = $request->data;
         $word = '%'.$search.'%';
-
-
         if($data){
 
             $contact = Contact::where('user_id', $id)

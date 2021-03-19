@@ -14,9 +14,6 @@ class CrudController extends Controller
 {
     public function createContact(Request $request)
     {
-    	Log::info('La funcion de crearContacto ha comenzado');
-
-    	$response = "";
 
 		$data = $request->getContent();
 
@@ -25,8 +22,6 @@ class CrudController extends Controller
 		$userToken = JWTAuth::parseToken()->authenticate();
 
 		if($data){
-
-			Log::info('Los datos se estan validando');
 
 			$validator = Validator::make($request->all(), [
 
@@ -37,10 +32,6 @@ class CrudController extends Controller
         	]);
 
         	if($validator->fails()){
-
-        		Log::alert('los datos de validator han fallado');
-
-        		Log::debug(response()->json($validator->errors()->toJson(), 400));
 
                 return response()->json($validator->errors()->toJson(), 400);
 
@@ -60,58 +51,39 @@ class CrudController extends Controller
 
 				$contact->save();
 
-				$response = 'el conctacto se ha creado correctamente';
-
 			}catch(\Exception $e){
 
-				$response = $e->getMessage();
+				return response()->json([
+                            'status'=>'error',
+                            'message'=>'error trying to save'
+                        ],500);
 
 			}
 
-		}
-
-		Log::info('Se ha creado el siguiente contacto');
-
-		Log::debug($contact);
-
-		Log::info('La funcion ha finalizado');
-
-		return response()->json([
+            return response()->json([
                 'status'=> 'success',
                 'message'=>'Contact created'
-            ],200);;
+            ],200);
+		}
     }
 
     public function eraseContact(Request $request)
     {
-    	Log::info('La funcion de eraseContact ha comenzado');
-
-    	$response = "";
-
 		$data = $request->getContent();
-
-		$data = json_decode($data);
 
 		if($data){
 
-			$erase_id = $data->id;
+			$erase_id = $request->id;
 
-			if($erase_id){
+			$contact = Contact::where('id', $erase_id)->first();
 
-				$contact = Contact::where('id', $erase_id)->first();
-
-				$contact->delete();
-
-				$response = 'el contacto ha sido borrado';
-			}
-
-
-		}
-
-		return response()->json([
+			$contact->delete();
+			
+            return response()->json([
                 'status'=> 'success',
                 'message'=>'User erased'
             ],200);
+		}	
     }
 
     public function updateContact(Request $request, $id)
@@ -121,8 +93,6 @@ class CrudController extends Controller
     	if($contact){
 
     		$data = $request->getContent();
-
-    		$data = json_decode($data);
 
     		if($data){
 
@@ -139,29 +109,35 @@ class CrudController extends Controller
 
 					$contact->save();
 
-					$response = 'El contacto ha sido actualizado';
+					return response()->json([
+                            'status'=> 'success',
+                            'message'=>'User updated'
+                            ],200);
 
 				}catch(\Exception $e){
 
-					$response = $e->getMessage();
+					return response()->json([
+                            'status'=> 'error',
+                            'message'=>'Error trying to update contact'
+                            ],500);
 
 				}
 
     		}else{
 
-    		$response = 'Los datos introducidos no son correctos';
+                    return response()->json([
+                            'status'=> 'error',
+                            'message'=>'Error, not data available'
+                            ],500);
 
     		}
-
     	}else{
 
-    		$response = 'El contacto no existe';
+    		return response()->json([
+                            'status'=> 'error',
+                            'message'=>'Error, not data available'
+                            ],500);
     	}
-
-    	return response()->json([
-                'status'=> 'success',
-                'message'=>'User updated'
-            ],200);;
     }
     
     public function showContact(Request $request)
@@ -174,21 +150,6 @@ class CrudController extends Controller
     	$contacts = Contact::where('user_id',$userId)->get()->toArray();
 
 		return response()->json($contacts);
-
-    }
-
-    public function showWebContact(Request $request){
-
-    	$contacts = DB::table('contacts')->get()->toArray();
-
-		return view('contacts')->with('contacts',$contacts);
-    }
-
-    public function showAllContacts(Request $request){
-
-    	$contacts = DB::table('contacts')->get()->toArray();
-
-    	return response()->json($contacts);
 
     }
 }
