@@ -129,24 +129,14 @@ class UserController extends Controller
 
     public function eraseUser(Request $request)
     {
-        $response = "";
+        $erase_id = $request->id;
 
-        $data = $request->getContent();
+        $user = User::where('id', $erase_id)->first();
+        $contact = Contact::where('id_user',$erase_id)->delete();
 
-        if($data){
+        $user->delete();
 
-            $erase_id = $request->id;
-
-            $user = User::where('id', $erase_id)->first();
-            $contact = Contact::where('id_user',$erase_id)->delete();
-
-            $user->delete();
-
-            return response()->json('Usuario borrado',202);
-
-        }
-
-        
+        return response()->json('Usuario borrado',202);
     }
 
     public function showUsers(Request $request)
