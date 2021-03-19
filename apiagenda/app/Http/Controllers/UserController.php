@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\MailController;
 use App\Models\User;
+use App\Models\Contact;
 use Illuminate\Support\Facades\Password;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
