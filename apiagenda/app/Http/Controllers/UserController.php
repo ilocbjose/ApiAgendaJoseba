@@ -133,27 +133,20 @@ class UserController extends Controller
 
         $data = $request->getContent();
 
-        $data = json_decode($data);
-
         if($data){
 
-            $erase_id = $data->id;
+            $erase_id = $request->id;
 
-            if($erase_id){
+            $user = User::where('id', $erase_id)->first();
+            $contact = Contact::where('id_user',$erase_id)->delete();
 
-                $user = User::where('id', $erase_id)->first();
+            $user->delete();
 
-                print($user);
-
-                $user->delete();
-
-                $response = 'el usuario ha sido borrado';
-            }
-
+            return response()->json('Usuario borrado',202);
 
         }
 
-        return response($response);
+        
     }
 
     public function showUsers(Request $request)
