@@ -133,10 +133,10 @@ class UserController extends Controller
 
         $erase_id = $user->id;
 
-        $user = User::where('id', $erase_id)->first();
+        $user_erase = User::where('id', $erase_id)->first();
         $contact = Contact::where('id_user',$erase_id)->delete();
 
-        $user->delete();
+        $user_erase->delete();
 
         return response()->json('Usuario borrado',200);
     }
