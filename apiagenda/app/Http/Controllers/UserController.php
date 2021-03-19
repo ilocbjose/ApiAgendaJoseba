@@ -129,7 +129,9 @@ class UserController extends Controller
 
     public function eraseUser(Request $request)
     {
-        $erase_id = $request->id;
+        $user = JWTAuth::parseToken()->authenticate();
+
+        $erase_id = $user->id;
 
         $user = User::where('id', $erase_id)->first();
         $contact = Contact::where('id_user',$erase_id)->delete();
