@@ -136,7 +136,7 @@ class UserController extends Controller
 
         $user->delete();
 
-        return response()->json('Usuario borrado',202);
+        return response()->json('Usuario borrado',200);
     }
 
     public function showUsers(Request $request)
