@@ -23,6 +23,12 @@ Route::post('login', 'App\Http\Controllers\UserController@authenticate');
 
 Route::post('password/email', 'App\Http\Controllers\UserController@forgot');
 Route::post('password/reset', 'App\Http\Controllers\UserController@reset');
+<<<<<<< HEAD
+=======
+Route::get('showWeb', 'App\Http\Controllers\CrudController@showWebContact');
+Route::get('showUsers','App\Http\Controllers\UserController@showUsers');
+Route::get('showAllContacts', 'App\Http\Controllers\CrudController@showAllContacts');
+>>>>>>> 753d3cec2d86b9df0c8cbb34d5c802f2bd2955f6
 
 Route::group(['middleware' => ['jwt.verify']], function() {
     
