@@ -46,15 +46,17 @@ class CrudController extends Controller
 
         	}
 
+			Log::debug('El usuario ' . $userToken->name . ' esta creando un contacto');
+
 			$contact = new Contact();
 
 			$contact->user_id = $userToken->id;
 
-			$contact->contact_name = $request->contact_name;
+			$contact->contact_name = $data->contact_name;
 
-			$contact->contact_phone = $request->contact_phone;
+			$contact->contact_phone = $data->contact_phone;
 
-			$contact->contact_email = $request->contact_email;
+			$contact->contact_email = $data->contact_email;
 
 			try{
 
@@ -111,7 +113,7 @@ class CrudController extends Controller
 		return response()->json([
                 'status'=> 'success',
                 'message'=>'User erased'
-            ],200);
+            ],200);;
     }
 
     public function updateContact(Request $request, $id)

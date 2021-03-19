@@ -18,26 +18,27 @@ class SearchController extends Controller
 
 		$data = $request->getContent();
 
-        $user = JWTAuth::parseToken()->authenticate();
-        $id = $user->id;
-        
-        $search = $request->data;
-        $word = '%'.$search.'%';
+		$data = json_decode($data);
 
+		if($data){
 
-        if($data){
+			$contact = Contact::find($request->request)->get()->toArray();
 
-            $contact = Contact::where('user_id', $id)
-                                ->where('contact_name', 'like', $word)
-                                ->orWhere('contact_mail', 'like', $word)
-                                ->orWhere('contact_phone', 'like', $word)->get();
+			if($contact){
 
-            if ($contact->isEmpty()){
-                return response()->json('No se ha encontrado ningún contacto', 404);
-            }
+					return reponse($contact);
 
-            return response($contact);
-        }
+			}else{
+
+				return 'No existe ningún usuario.';
+
+			}
+
+		} else {
+
+			return 'Datos introducidos nulos.';
+
+		}
 
 	}
 }
