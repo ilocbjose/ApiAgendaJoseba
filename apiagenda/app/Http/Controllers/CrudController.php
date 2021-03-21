@@ -96,14 +96,14 @@ class CrudController extends Controller
 
     		if($data){
 
-    			if(isset($data->contact_name))
-					$contact->contact_name = $data->contact_name;
+    			if(isset($request->contact_name))
+					$contact->contact_name = $request->contact_name;
 
-				if(isset($data->contact_phone))
-					$contact->contact_phone = $data->contact_phone;
+				if(isset($request->contact_phone))
+					$contact->contact_phone = $request->contact_phone;
 
-				if(isset($data->contact_email))
-					$contact->contact_email = $data->contact_email;
+				if(isset($request->contact_email))
+					$contact->contact_email = $request->contact_email;
 
 				try{
 
